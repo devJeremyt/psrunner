@@ -1,0 +1,19 @@
+{
+  "name": "psrunner",
+  "version": "1.0.0",
+  "description": "Simple GUI for running common MSOnline module commands",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devJeremyt/psrunner.git"
+  },
+  "author": "Jeremy Trimble",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devJeremyt/psrunner/issues"
+  },
+  "homepage": "https://github.com/devJeremyt/psrunner#readme"
+}
