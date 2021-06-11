@@ -1,7 +1,7 @@
 const { dialog } = require('electron')
 
 const chooseCSV = ()=>{
-    dialog.showOpenDialog({
+   return dialog.showOpenDialog({
         title: "Choose a CSV",
         buttonLabel: "Select",
         filters: [
@@ -9,6 +9,7 @@ const chooseCSV = ()=>{
         ],
         properties: ["openFile", "dontAddToRecent",]
     });
+
 }
 
 exports.chooseCSV = chooseCSV

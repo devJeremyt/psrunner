@@ -1,5 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron'),
-        csvChooser = require('./js/csvChooser');
+        csvChooser = require('./js/csvChooser'),
+        path = require('path');
+
+let { exec } = require('child_process');
+const { stderr } = require('process');
 
 function createWindow(){
     const win = new BrowserWindow({
@@ -20,7 +24,17 @@ app.whenReady().then(()=>{
 })
 
 ipcMain.on('openCSV', ()=>{
-    csvChooser.chooseCSV();
+    let filePath = csvChooser.chooseCSV();
+
+    filePath.then((file)=>console.log(file))
+})
+
+ipcMain.on('runScript', (event, args)=>{
+    exec('connect-MsolService | ' + path.join(__dirname, "psscripts", args[0] +'.ps1 ') + args[1],{'shell':'powershell.exe'}, (error, stdout, stderr)=>{
+        console.log(error)
+        console.log(stderr)
+        console.log(stdout)
+    })
 })
 
 app.on('window-all-closed', ()=>{

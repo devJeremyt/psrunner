@@ -10,13 +10,22 @@
   <body>
     <h1>MSOnline PowerShell Runner</h1>
     <h2>Choose a script to run</h2>
-    <select name="scrip" id="script">
+    <select name="scriptSelection" id="scriptSelection">
+        <option value="select">Select PS Script</option>
         <option value="singleBlockSignin">Single User Block Signin</option>
-        <option value="multiBlockSignIn">Multiple User Block Signin</option>
+        <option value="multiBlockSignin">Multiple User Block Signin</option>
     </select>
+    
+    <div id="options">
+        
+    </div>
+
     <h2>Import the file if one is needed</h2>
 
     <button id="openCSVBtn">Open CSV</button>
-    <script src="./public/openDialog.js"></script>
+
+    <button id="runScriptBtn">Run script</button>
+    <script src="./renderer.js"></script>
+    <script src="./loadOptionsHtml.js"></script>
   </body>
 </html>
