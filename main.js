@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron'),
+const { app, BrowserWindow, Notification, ipcMain } = require('electron'),
         csvChooser = require('./js/csvChooser'),
         path = require('path');
 
@@ -23,10 +23,10 @@ app.whenReady().then(()=>{
     createWindow()
 })
 
-ipcMain.on('openCSV', ()=>{
+ipcMain.on('openCSV', (event)=>{
     let filePath = csvChooser.chooseCSV();
 
-    filePath.then((file)=>console.log(file))
+    filePath.then((file)=>event.sender.send('openCSVReply', file))
 })
 
 ipcMain.on('runScript', (event, args)=>{
@@ -34,6 +34,10 @@ ipcMain.on('runScript', (event, args)=>{
         console.log(error)
         console.log(stderr)
         console.log(stdout)
+
+        if(error == null){
+            new Notification({title: "Script ran successfully", body: args[0] + ' ran without an error'}).show()
+        }
     })
 })
 
